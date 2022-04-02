@@ -1,0 +1,202 @@
+package algorithms.robot;
+
+/**
+ * Класс Robot описывает сущность робота - его текущее местоположение, а также направление куда он смотрит
+ * Enum класс Direction описывает перечисления, по сути - это константы
+ * Метод moveRobot описывает алгоритм поиска пути, чтобы робот смог добраться из своего местоположения до заданной точки
+ */
+
+class RobotApp {
+    public static void main(String[] args) {
+        Robot robot = new Robot(0,4, Direction.DOWN);
+        moveRobot(robot, -4, 3);
+        System.out.println("Робот пришел в точку с координатами: " + robot.getX() + " " + robot.getY());
+    }
+
+
+   static void moveRobot(Robot robot, int toX, int toY) {
+        int x = robot.getX();
+        int y = robot.getY();
+        Direction dir = robot.getDirection();
+
+        if (toX >= x && toY >= y) {
+            switch (dir) {
+                case UP:
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case DOWN:
+                    robot.turnRight();
+                    robot.turnRight();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case LEFT:
+                    robot.turnRight();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case RIGHT:
+                    robot.turnLeft();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+            }
+
+        } else if (toX >= x && toY <= y) {
+            switch (dir) {
+                case UP:
+                    robot.turnRight();
+                    robot.turnRight();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case DOWN:
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case LEFT:
+                    robot.turnLeft();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case RIGHT:
+                    robot.turnRight();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = toX - x; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+            }
+
+        } else if (toX <= x && toY >= y) {
+            switch (dir) {
+                case UP:
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case DOWN:
+                    robot.turnRight();
+                    robot.turnRight();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case LEFT:
+                    robot.turnRight();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case RIGHT:
+                    robot.turnLeft();
+                    for (int i = toY - y; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnLeft();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+            }
+
+        } else if (toX <= x && toY <= y) {
+            switch (dir) {
+                case UP:
+                    robot.turnRight();
+                    robot.turnRight();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case DOWN:
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case LEFT:
+                    robot.turnLeft();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+                case RIGHT:
+                    robot.turnRight();
+                    for (int i = y - toY; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    robot.turnRight();
+                    for (int i = x - toX; i > 0; i--) {
+                        robot.stepForward();
+                    }
+                    break;
+            }
+        } else {
+            return;
+        }
+
+    }
+}
